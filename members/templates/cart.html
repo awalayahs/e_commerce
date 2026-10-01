@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Jodi Enterprise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Quicksand', sans-serif;">
+    {% include 'layout/navbar.html' %}
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-8">Shopping Cart</h1>
+
+        {% if cart.cart %}
+        <div class="grid grid-cols-1 gap-6" id="cart-items">
+            {% for item in cart %}
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow flex justify-between items-center" data-item-id="{{ item.id }}">
+                <div>
+                    <h2 class="text-xl font-semibold">{{ item.name }}</h2>
+                    <p class="text-gray-600">${{ item.price }}</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="updateQuantity('{{ item.id }}', -1)" class="text-gray-500">-</button>
+                    <span data-product-id="{{ item.id }}" data-quantity="{{ item.quantity }}">{{ item.quantity }}</span>
+                    <button onclick="updateQuantity('{{ item.id }}', 1)" class="text-gray-500">+</button>
+                    <button onclick="removeItem('{{ item.id }}')" class="text-red-500 hover:text-red-700">Remove</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Total Section -->
+        <div class="mt-8 bg-gray-100 p-6 rounded-lg flex justify-between items-center">
+            <h2 class="text-xl font-semibold">Total</h2>
+            <p class="text-2xl font-bold" id="cart-total">${{ cart.get_total_price }}</p>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="mt-10">
+            <h2 class="text-2xl font-semibold mb-4">Select Payment Method</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- PayPal -->
+                <div id="paypal" onclick="selectPayment('paypal')" class="cursor-pointer bg-white p-6 rounded-lg shadow hover:shadow-lg transition border-2 border-transparent hover:border-cyan-500 text-center">
+                    <img src="{% static 'images/paypal.png' %}" alt="PayPal" class="mx-auto w-16 mb-2">
+                    <h3 class="font-semibold text-lg">PayPal</h3>
+                </div>
+
+                <!-- Mobile Wallet -->
+                <div id="mobile_wallet" onclick="selectPayment('mobile_wallet')" class="cursor-pointer bg-white p-6 rounded-lg shadow hover:shadow-lg transition border-2 border-transparent hover:border-cyan-500 text-center">
+                    <img src="{% static 'images/mobile_wallet.png' %}" alt="Mobile Wallet" class="mx-auto w-16 mb-2">
+                    <h3 class="font-semibold text-lg">Mobile Wallet</h3>
+                </div>
+
+                <!-- Debit Card -->
+                <div id="debit_card" onclick="selectPayment('debit_card')" class="cursor-pointer bg-white p-6 rounded-lg shadow hover:shadow-lg transition border-2 border-transparent hover:border-cyan-500 text-center">
+                    <img src="{% static 'images/debit_card.png' %}" alt="Debit Card" class="mx-auto w-16 mb-2">
+                    <h3 class="font-semibold text-lg">Debit Card</h3>
+                </div>
+            </div>
+
+            <!-- Payment Details (Dynamic) -->
+            <div id="payment-details" class="mt-8 hidden bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-4">Payment Details</h3>
+
+                <!-- PayPal -->
+                <div id="paypal-details" class="hidden">
+                    <p class="text-gray-600 mb-4">You will be redirected to PayPal to complete your purchase.</p>
+                </div>
+
+                <!-- Mobile Wallet -->
+                <div id="wallet-details" class="hidden">
+                    <label class="block text-gray-700 mb-2">Mobile Number</label>
+                    <input type="text" placeholder="Enter your mobile wallet number" class="border rounded-lg px-4 py-2 w-full mb-4 focus:ring focus:ring-cyan-300">
+                </div>
+
+                <!-- Debit Card -->
+                <div id="card-details" class="hidden">
+                    <label class="block text-gray-700 mb-2">Card Number</label>
+                    <input type="text" placeholder="XXXX XXXX XXXX XXXX" class="border rounded-lg px-4 py-2 w-full mb-4 focus:ring focus:ring-cyan-300">
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Expiry Date</label>
+                            <input type="text" placeholder="MM/YY" class="border rounded-lg px-4 py-2 w-full focus:ring focus:ring-cyan-300">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">CVV</label>
+                            <input type="text" placeholder="XXX" class="border rounded-lg px-4 py-2 w-full focus:ring focus:ring-cyan-300">
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{% url 'checkout' %}" class="block mt-6 text-center bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition">
+                    Proceed to Payment
+                </a>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- Empty Cart -->
+        <div class="text-center py-12">
+            <p class="text-gray-600">Your cart is empty</p>
+            <a href="{% url 'products' %}" class="mt-4 inline-block bg-cyan-700 border border-cyan-700 hover:text-cyan-700 hover:bg-white text-white px-6 py-2 rounded transition-colors">
+                Continue Shopping
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function updateQuantity(productId, change) {
+            const item = document.querySelector(`[data-product-id="${productId}"]`);
+            if(!item) return;
+
+            const currentQuantity = parseInt(item.getAttribute('data-quantity'));
+            const newQuantity = currentQuantity + change;
+
+            if(newQuantity >= 0){
+                fetch("{% url 'update_cart' %}", {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json','X-CSRFToken':'{{ csrf_token }}'},
+                    body: JSON.stringify({product_id:productId, quantity:newQuantity})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.status==='success'){
+                        if(newQuantity===0){
+                            const itemEl = document.querySelector(`[data-item-id="${productId}"]`);
+                            if(itemEl) itemEl.remove();
+                        } else {
+                            item.setAttribute('data-quantity', newQuantity);
+                            item.textContent = newQuantity;
+                        }
+                        document.getElementById('cart-total').textContent = `$${data.total_price}`;
+                        const cartIcon = document.querySelector('.cart-count');
+                        if(cartIcon) cartIcon.textContent = data.cart_count;
+                        if(data.cart_count===0) window.location.reload();
+                    } else { console.error(data.message); }
+                });
+            }
+        }
+
+        function removeItem(productId){
+            fetch("{% url 'remove_from_cart' %}", {
+                method: 'POST',
+                headers: {'Content-Type':'application/json','X-CSRFToken':'{{ csrf_token }}'},
+                body: JSON.stringify({product_id: productId})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.status==='success'){
+                    const itemEl = document.querySelector(`[data-item-id="${productId}"]`);
+                    if(itemEl) itemEl.remove();
+                    document.getElementById('cart-total').textContent = `$${data.total_price}`;
+                    const cartIcon = document.querySelector('.cart-count');
+                    if(cartIcon) cartIcon.textContent = data.cart_count;
+                    if(data.cart_count===0) window.location.reload();
+                } else { console.error(data.message); }
+            });
+        }
+
+        // Payment method selection
+        function selectPayment(method) {
+            const methods = ['paypal', 'mobile_wallet', 'debit_card'];
+            methods.forEach(m => {
+                document.getElementById(m).classList.remove('border-cyan-500');
+            });
+            document.getElementById(method).classList.add('border-cyan-500');
+
+            document.getElementById('payment-details').classList.remove('hidden');
+            document.getElementById('paypal-details').classList.add('hidden');
+            document.getElementById('wallet-details').classList.add('hidden');
+            document.getElementById('card-details').classList.add('hidden');
+
+            if (method === 'paypal') document.getElementById('paypal-details').classList.remove('hidden');
+            if (method === 'mobile_wallet') document.getElementById('wallet-details').classList.remove('hidden');
+            if (method === 'debit_card') document.getElementById('card-details').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

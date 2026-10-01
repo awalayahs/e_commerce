@@ -1,0 +1,107 @@
+<nav
+  class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-20 py-4 bg-gray-900/80 backdrop-blur-lg text-white shadow-lg border-b border-gray-700 transition-all duration-500 ease-in-out"
+>
+  <!-- Logo -->
+  <h1
+    class="text-2xl font-bold flex items-center space-x-2 hover:scale-105 transition-transform duration-300"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-7 w-7 text-cyan-500 animate-pulse"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"
+      />
+    </svg>
+    <span class="hover:text-cyan-400 transition-colors duration-300">
+      Jodi<span class="text-cyan-500">Enterprise</span>
+    </span>
+  </h1>
+
+  <!-- Navigation Links -->
+  <ul class="flex space-x-4 md:space-x-6">
+    <li>
+      <a
+        href="{% url 'members' %}"
+        class="px-3 py-2 rounded-lg hover:bg-gray-800/40 transition duration-300"
+        >Home</a
+      >
+    </li>
+    <li>
+      <a
+        href="{% url 'products' %}"
+        class="px-3 py-2 rounded-lg hover:bg-gray-800/40 transition duration-300"
+        >Products</a
+      >
+    </li>
+    <li>
+      <a
+        href="{% url 'about' %}"
+        class="px-3 py-2 rounded-lg hover:bg-gray-800/40 transition duration-300"
+        >About</a
+      >
+    </li>
+    <li>
+      <a
+        href="{% url 'contact' %}"
+        class="px-3 py-2 rounded-lg hover:bg-gray-800/40 transition duration-300"
+        >Contact</a
+      >
+    </li>
+  </ul>
+
+  <!-- Cart and Auth Links -->
+  <ul class="flex space-x-3 md:space-x-4 items-center">
+    <!-- Cart -->
+    <li>
+      <a
+        href="{% url 'cart' %}"
+        class="relative flex items-center px-3 py-2 rounded-lg hover:bg-gray-800/40 transition duration-300"
+      >
+        Cart
+        <span
+          class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center cart-count"
+        >
+          {{ cart_count }}
+        </span>
+      </a>
+    </li>
+
+    {% if request.session.member_id %}
+    <!-- Logout -->
+    <li>
+      <a
+        href="{% url 'logout' %}"
+        class="flex items-center bg-red-600 hover:bg-red-500 text-white px-3 py-2 rounded-lg shadow-md transition duration-300"
+      >
+        Logout
+      </a>
+    </li>
+    {% else %}
+    <!-- Login -->
+    <li>
+      <a
+        href="{% url 'login' %}"
+        class="flex items-center bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-2 rounded-lg shadow-md transition duration-300"
+      >
+        Login
+      </a>
+    </li>
+    <!-- Sign Up -->
+    <li>
+      <a
+        href="{% url 'signup' %}"
+        class="flex items-center bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-2 rounded-lg shadow-md transition duration-300"
+      >
+        Sign Up
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>

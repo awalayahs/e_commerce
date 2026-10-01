@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Jodi Enterprise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .container-about {
+            font-family: 'Quicksand', sans-serif;
+            background-image: url("{% static 'images/contact_background2.jpg' %}");
+            background-size: cover;
+            background-position: top;
+            background-repeat: no-repeat;
+            height: 50vh;
+            backdrop-filter: opacity(10%);
+            -webkit-backdrop-filter: opacity(10%);
+            
+        }
+    </style>
+</head>
+<body>
+    {% include 'layout/navbar.html' %}
+    <div class="container-about bg-black bg-opacity-50 ">
+        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 ">
+
+        </div>
+      
+        <div class="container mx-auto px-20 py-10 text-white">
+            <div class="absolute top-[40%] left-[40%] transform -translate-x-1/2 -translate-y-1/2">
+
+                <br>
+                <br>
+
+                <h1 class="text-6xl font-bold mb-10 ">Contact</h1>
+                <p class="text-lg font-bold">
+                    For more information please contact usat <a href="mailto:jodi@gmail.com.com" class="text-cyan-500 underline">jodi@gmail.com.com</a>. We are help to help you.
+                </p>
+                </div>
+        </div>
+       
+    </div>
+    <div class="container mx-auto px-20 py-10 grid grid-cols-2 justify-between items-center gap-10">
+      <div>
+        <h1 class="text-4xl font-bold mb-10">Get in <span>touch</span> with us!</h1>
+        <p class="text-lg font-bold">For any inquiries or questions, feel free to contact us at <a href="mailto:jodi@gmail.com.com" class="text-cyan-500 underline">jodi@gmail.com.com</a>. We'll be happy to help you with any concerns or requests.</p>
+      </div>
+      <div>
+        <form action="" class="flex flex-col gap-4 border p-6 rounded">
+            <h1 class="text-4xl font-bold mb-10">Reach out to us</h1>
+            <input type="text" placeholder="Name" class="w-full p-2 border rounded">
+            <input type="email" placeholder="Email" class="w-full p-2 border rounded">
+            <input type="number" placeholder="Phone Number" class="w-full p-2 border rounded">
+            <textarea name="" id="" cols="30" rows="10" class="w-full p-2 border rounded"></textarea>
+            <button class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Send</button>
+        </form>
+      </div>
+    </div>
+</body>
+</html>

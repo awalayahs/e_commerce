@@ -1,0 +1,171 @@
+{
+    "categories": [{
+            "id": 1,
+            "name": "Vehicles",
+            "products": [{
+                    "id": 1,
+                    "name": "Audi R8",
+                    "description": "2018 Audi R8 V10 plus quattro",
+                    "price": 169999.99,
+                    "image": "2018_Audi_R8.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "BMW M3",
+                    "description": "BMW M3 2020 Competition",
+                    "price": 69999.99,
+                    "image": "2021_BMW_M3.jpg"
+                },
+                {
+                    "id": 3,
+                    "name": "Mercedes AMG GT",
+                    "description": "2020 Mercedes AMG GT R Pro",
+                    "price": 162900.00,
+                    "image": "mercedes_amg_gt.avif"
+                },
+                {
+                    "id": 4,
+                    "name": "Porsche 911",
+                    "description": "2021 Porsche 911 Turbo S",
+                    "price": 203500.00,
+                    "image": "porsche_911.jpg"
+                },
+                {
+                    "id": 5,
+                    "name": "Tesla Model S",
+                    "description": "2021 Tesla Model S Plaid",
+                    "price": 129990.00,
+                    "image": "tesla-model-s.jpg"
+                },
+                {
+                    "id": 6,
+                    "name": "Maserati GranTurismo",
+                    "description": "2010 Maserati GranTurismo S",
+                    "price": 79900.00,
+                    "image": "Maserati.jpeg"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Watches",
+            "products": [{
+                    "id": 1,
+                    "name": "Ap Royal Oak",
+                    "description": "Ap Royal Oak",
+                    "price": 24999.99,
+                    "image": "ap_royal_oak.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "Breitling Navitimer",
+                    "description": "Breitling Navitimer",
+                    "price": 19999.99,
+                    "image": "breitling_navitimer.jpg"
+                },
+                {
+                    "id": 3,
+                    "name": "Omega Speedmaster",
+                    "description": "Omega Speedmaster",
+                    "price": 14999.99,
+                    "image": "omega_speedmaster.webp"
+                },
+                {
+                    "id": 4,
+                    "name": "Rolex Submariner",
+                    "description": "Rolex Submariner",
+                    "price": 15999.99,
+                    "image": "rolex_submariner.webp"
+                },
+                {
+                    "id": 5,
+                    "name": "Tag Heuer Carrera",
+                    "description": "Tag Heuer Carrera",
+                    "price": 7999.99,
+                    "image": "tag_heuer_carrera.webp"
+                },
+                {
+                    "id": 6,
+                    "name": "Patek Philippe Nautilus",
+                    "description": "Patek Philippe Nautilus",
+                    "price": 49999.99,
+                    "image": "Patek-Philippe.jpg"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Perfumes",
+            "products": [{
+                    "id": 1,
+                    "name": "Chanel No.5",
+                    "description": "Chanel No.5",
+                    "price": 129.99,
+                    "image": "Chanel-No. 5.jpg"
+                },
+                {
+                    "id": 2,
+                    "name": "Maison Francis Kurkdjian",
+                    "description": "Maison Francis Kurkdjian Baccarat Rouge 540",
+                    "price": 299.99,
+                    "image": "Maison-Francis-Kurkdjian.avif"
+                },
+                {
+                    "id": 3,
+                    "name": "Mugler Angel",
+                    "description": "Mugler Angel",
+                    "price": 89.99,
+                    "image": "Mugler-Angel.jpg"
+                },
+                {
+                    "id": 4,
+                    "name": "Prada Paradoxe",
+                    "description": "Prada Paradoxe",
+                    "price": 119.99,
+                    "image": "Prada-Paradoxe.jpg"
+                },
+                {
+                    "id": 5,
+                    "name": "Valentino Donna",
+                    "description": "Valentino Donna",
+                    "price": 99.99,
+                    "image": "Valentino-Donna.jpg"
+                },
+                {
+                    "id": 6,
+                    "name": "YSL Libre",
+                    "description": "YSL Libre",
+                    "price": 109.99,
+                    "image": "YSL-Libre.jpg"
+                }
+
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Phones",
+            "products": [{
+                    "id": 7,
+                    "name": "Apple iPhone 17",
+                    "description": "Apple iPhone 17 Pro Max",
+                    "price": 1299.99,
+                    "image": "iphone17promax.jpg"
+                },
+                {
+                    "id": 8,
+                    "name": "Apple iPhone 16",
+                    "description": "Apple iPhone 16 Pro max",
+                    "price": 1199.99,
+                    "image": "Apple-iPhone-16.jpg"
+                },
+                {
+                    "id": 9,
+                    "name": "Apple iPhone 15",
+                    "description": "Apple iPhone 15 Pro Max",
+                    "price": 1099.99,
+                    "image": "Apple-iPhone-15.jpg "
+                }
+            ]
+        }
+    ]
+}

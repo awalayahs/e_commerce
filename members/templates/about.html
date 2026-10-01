@@ -1,0 +1,164 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Jodi Enterprise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: &quot;Quicksand&quot;, sans-serif">
+    {% include 'layout/navbar.html' %}
+    <div class="container mx-auto px-20 py-10">
+      <div class="max-w-4xl mx-auto p-6">
+        <br />
+        <br />
+        <br />
+
+        <h1 class="text-4xl font-bold mb-6 text-center text-cyan-600">
+          Project Overview: E-Commerce Website with Shopping Cart and Payment
+          Integration
+        </h1>
+
+        <p class="mb-4">
+          <strong>Project Name:</strong> JodiEnterprise (or similar)
+        </p>
+
+        <p class="mb-4">
+          <strong>Purpose:</strong> To build a web-based e-commerce platform
+          that allows registered users to browse products, add them to a
+          shopping cart, manage the cart (add, edit quantity, remove items), and
+          complete checkout using multiple payment methods.
+        </p>
+
+        <hr class="my-6 border-gray-300" />
+
+        <h2 class="text-2xl font-semibold mb-4 text-cyan-500">Key Features</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>
+            <strong>User Authentication:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>
+                Users can sign up with first name, last name, email, and
+                password.
+              </li>
+              <li>Login functionality with session-based authentication.</li>
+              <li>Logout clears session data.</li>
+              <li>Only logged-in users can access the cart and checkout.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Product Catalog:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>
+                Products are loaded from a JSON file (data.json) categorized by
+                product type.
+              </li>
+              <li>
+                Users can view products with details such as name, price, and
+                category.
+              </li>
+              <li>Product page displays current cart count.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Shopping Cart:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>Users can add products to the cart.</li>
+              <li>
+                Cart supports updating quantities and removing items
+                dynamically.
+              </li>
+              <li>Shows individual item totals and a grand total.</li>
+              <li>
+                Cart state is stored in the session using a custom Cart class.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Checkout & Payments:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>Users can checkout once items are in the cart.</li>
+              <li>
+                Multiple payment methods:
+                <ul class="list-disc list-inside ml-6 space-y-1">
+                  <li>PayPal: Redirect option.</li>
+                  <li>Mobile Wallet: Input phone number for payment.</li>
+                  <li>Debit Card: Input card number, expiry, and CVV.</li>
+                </ul>
+              </li>
+              <li>
+                Payment selection dynamically displays the required input
+                fields.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Frontend Design:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>Built with Tailwind CSS for responsive and modern UI.</li>
+              <li>Dynamic interactions handled with vanilla JavaScript.</li>
+              <li>
+                Cart updates, item removal, and payment selections happen
+                without page reloads where possible.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Backend:</strong>
+            <ul class="list-disc list-inside ml-6 space-y-1">
+              <li>Built with Django framework.</li>
+              <li>Uses session-based cart storage.</li>
+              <li>Provides JSON APIs for add/update/remove cart actions.</li>
+              <li>Includes CSRF protection and login validation.</li>
+              <li>
+                Handles error messages and success notifications with Django
+                messages framework.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr class="my-6 border-gray-300" />
+
+        <h2 class="text-2xl font-semibold mb-4 text-cyan-500">
+          Optional/Planned Enhancements
+        </h2>
+        <ul class="list-disc list-inside space-y-2 ml-6">
+          <li>Email notifications for successful purchases.</li>
+          <li>
+            Integration with real payment gateways (PayPal SDK, Stripe, mobile
+            wallets).
+          </li>
+          <li>User order history/dashboard.</li>
+          <li>Admin panel for managing products and orders.</li>
+        </ul>
+
+        <hr class="my-6 border-gray-300" />
+
+        <h2 class="text-2xl font-semibold mb-4 text-cyan-500">Summary</h2>
+        <p class="mb-4">
+          This project is essentially a full-stack e-commerce system where users
+          can:
+        </p>
+        <ul class="list-disc list-inside ml-6 space-y-1">
+          <li>Browse products</li>
+          <li>Add them to a session-based cart</li>
+          <li>Modify quantities or remove items</li>
+          <li>Choose between multiple payment methods</li>
+          <li>Complete checkout with session handling and dynamic feedback</li>
+        </ul>
+        <p class="mt-4">
+          It combines Django backend, session management, JSON product data, and
+          modern frontend interactivity using Tailwind and JavaScript.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
